@@ -20,7 +20,7 @@ map.addControl(geocoder);
 map.on('load', function() {
   map.addSource('locations', {
     type: "geojson", 
-    data: "http://desolate-ridge-44158.herokuapp.com/locations.geojson",
+    data: "https://desolate-ridge-44158.herokuapp.com/locations.geojson",
     cluster: true, 
     clusterMaxZoom: 14, 
   })
@@ -102,7 +102,7 @@ geocoder.on('result', function(ev) {
     .setLngLat(ev.result.geometry.coordinates)
     .addTo(map)
 
-  var url = "http://desolate-ridge-44158.herokuapp.com/location"
+  var url = "https://desolate-ridge-44158.herokuapp.com/location"
   var data = {
     latitude: ev.result.geometry.coordinates[0],
     longitude: ev.result.geometry.coordinates[1]
