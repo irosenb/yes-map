@@ -4,7 +4,7 @@ var models = require('../models');
 var Location = models.Location;
 var GeoJSON = require('geojson'); 
 
-const { Client } = require('pg')
+const { Client, Pool } = require('pg')
  
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -12,7 +12,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/locations.geojson', function(req, res, next) {
-  const client = new Client() 
+  const client = new Client({
+    connectionString: DATABASE_URL
+  }) 
   client.connect() 
 
   client.query('SELECT latitude,longitude FROM locations', (err, results) => {
@@ -30,7 +32,7 @@ router.get('/locations.geojson', function(req, res, next) {
 router.post('/location', function(req, res, next) {
   console.log(req.body)
   
-  const client = new Client()
+  const client = new Client({ connectionString: DATABASE_URL })
   client.connect()
   
   var text = 'INSERT INTO locations(latitude, longitude) values ($1, $2)'
