@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/locations.geojson', function(req, res, next) {
   const client = new Client({
-    connectionString: DATABASE_URL
+    connectionString: process.env.DATABASE_URL
   }) 
   client.connect() 
 
