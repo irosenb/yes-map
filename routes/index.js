@@ -32,7 +32,7 @@ router.get('/locations.geojson', function(req, res, next) {
 router.post('/location', function(req, res, next) {
   console.log(req.body)
   
-  const client = new Client({ connectionString: DATABASE_URL })
+  const client = new Client({ connectionString: process.env.DATABASE_URL })
   client.connect()
   
   var text = 'INSERT INTO locations(latitude, longitude) values ($1, $2)'
