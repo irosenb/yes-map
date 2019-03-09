@@ -64,6 +64,19 @@ map.on('load', function() {
     }
   })
 
+  map.addLayer({
+    id: 'unclustered-point', 
+    type: 'circle', 
+    source: "locations", 
+    filter: ['!', ['has', 'point-count']],
+    paint: {
+      "circle-color": "#4D90FF",
+      "circle-radius": 4,
+      "circle-stroke-width": 1,
+      "circle-stroke-color": "#fff"
+    }
+  })
+
   map.on('click', 'clusters', function(e) {
     var features = map.queryRenderedFeatures(e.point, { layers: ['clusters']})
     var clusterId = features[0].properties.cluster_id; 
